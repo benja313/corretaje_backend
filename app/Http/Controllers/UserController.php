@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class userController extends BaseController
+class UserController extends BaseController
 {
     /**
      * Display a listing of the resource.
+     * asdas
      *
      * @return \Illuminate\Http\Response
      */
