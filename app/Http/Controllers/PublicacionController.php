@@ -32,6 +32,7 @@ class PublicacionController extends Controller
     public function createPublication(Request $request){
         //return response()->json($request->imagenprincipal, 200);
         $datalle =DB::transaction(function () use ($request) {
+            $resultado = new \stdClass();
             try {
                 $propiedad = $request->get('propiedad');
                 $publicacion = $request;
@@ -111,9 +112,14 @@ class PublicacionController extends Controller
                     'created_at' => Carbon::now('America/Santiago')
                 ]);
                 $publicacionSave->save();
+                $resultado->estado = true;
+                return $resultado;
 
             }catch (\PDOException  $e){
-            return response()->json('error');
+                \Illuminate\Support\Facades\DB::rollback();
+                $resultado->estado = false;
+                $resultado->error = $e->getMessage();
+                return $resultado;
         }
         });
         return response()->json($datalle);
