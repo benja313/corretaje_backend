@@ -28,7 +28,7 @@ Route::get('login1', 'API\RegisterController@login1');
 
 Route::middleware('auth:api')->group( function () {
     Route::put('changeTipoPersona/{id}', 'UserController@changeTipoPersona');
-    Route::post('createNewPublication', 'PublicacionController@createPublication');
+
     Route::put('getCuentaUser/{id}', 'CuentaBancariaController@getCuentaUser');
     Route::resource('venta', 'VentaController');
     Route::get('showAllSales/{id}', 'VentaController@showAllSales');
@@ -46,6 +46,7 @@ Route::middleware('auth:api')->group( function () {
     Route::resource('bancos', 'BancoController');
 
 });
+Route::post('createNewPublication', 'PublicacionController@createPublication');
 Route::get('getAllPublicationUpdate/{id}', 'PublicacionController@getAllPublicationUpdate');
 //Route::get('getAllPublicationUpdate/{id}', 'PublicacionController@getAllPublicationUpdate');//->middleware('role:"7"');
 Route::resource('users', 'UserController');

@@ -15,6 +15,7 @@ use DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\Types\Object_;
 
 class PublicacionController extends Controller
@@ -115,7 +116,7 @@ class PublicacionController extends Controller
                 $resultado->estado = true;
                 return $resultado;
 
-            }catch (\PDOException  $e){
+            }catch (Exception $e){
                 \Illuminate\Support\Facades\DB::rollback();
                 $resultado->estado = false;
                 $resultado->error = $e->getMessage();
